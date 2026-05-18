@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
@@ -10,6 +11,30 @@ import { fadeUp, stagger } from "@/lib/variants";
 function getInitials(name: string): string {
   const parts = name.replace(/^(JUDr\.|Mgr\.|Ing\.)\s*/i, "").split(" ");
   return parts.slice(0, 2).map((p) => p[0]).join("").toUpperCase();
+}
+
+function MemberPhoto({ src, name }: { src: string; name: string }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <div className="w-24 h-24 rounded-full bg-dark border-2 border-gold/40 flex items-center justify-center">
+          <span className="font-display text-2xl font-bold text-gold">
+            {getInitials(name)}
+          </span>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <Image
+      src={src}
+      alt={name}
+      fill
+      className="object-cover object-top"
+      onError={() => setFailed(true)}
+    />
+  );
 }
 
 export default function TeamSection() {
@@ -50,13 +75,10 @@ export default function TeamSection() {
               transition={{ duration: 0.25 }}
               className="bg-dark rounded-sm overflow-hidden group"
             >
-              {/* Avatar area */}
-              <div className="bg-dark-light h-48 flex items-center justify-center border-b border-gold/10">
-                <div className="w-24 h-24 rounded-full bg-dark border-2 border-gold/40 flex items-center justify-center">
-                  <span className="font-display text-2xl font-bold text-gold">
-                    {getInitials(member.name)}
-                  </span>
-                </div>
+              {/* Photo area */}
+              <div className="relative bg-dark-light h-64 border-b border-gold/10 overflow-hidden">
+                <MemberPhoto src={member.image} name={member.name} />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent pointer-events-none" />
               </div>
 
               {/* Info */}

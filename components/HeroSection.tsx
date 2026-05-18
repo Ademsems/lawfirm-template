@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
@@ -21,6 +22,19 @@ export default function HeroSection({ firmName }: HeroProps) {
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-dark"
     >
+      {/* Hero background image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/hero-law.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover object-center"
+        />
+        {/* Dark overlay so text stays readable */}
+        <div className="absolute inset-0 bg-dark/75" />
+      </div>
+
       {/* Animated background geometry */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Grid pattern */}
