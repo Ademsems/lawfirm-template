@@ -1,27 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --dark:       #0D1B2A;
+  --dark-light: #152535;
+  --gold:       #C9A96E;
+  --gold-light: #E2C49A;
+  --cream:      #FAFAF8;
+  --parchment:  #F0EBE3;
+  --text-light: #E8E4DC;
+  --text-muted: #8A9BA8;
+  --charcoal:   #1C1C1C;
+  --mid:        #555555;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background-color: var(--dark);
+    color: var(--text-light);
+    font-family: 'Inter', sans-serif;
+  }
+
+  ::selection {
+    background-color: rgba(201, 169, 110, 0.25);
+    color: var(--text-light);
+  }
+
+  ::-webkit-scrollbar       { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: rgba(201, 169, 110, 0.4); border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(201, 169, 110, 0.7); }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .font-display {
+    font-family: 'Cormorant Garamond', serif;
   }
 }
