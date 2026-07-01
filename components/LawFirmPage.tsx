@@ -32,7 +32,7 @@ export default function LawFirmPage({ dynamicFirm }: LawFirmPageProps) {
       <StatsBar />
       <AboutSection />
       <PracticeAreas />
-      <TeamSection dynamicName={dynamicFirm.name} />
+      <TeamSection />
       <CaseStudies />
       <ProcessSection />
       <Testimonials />
