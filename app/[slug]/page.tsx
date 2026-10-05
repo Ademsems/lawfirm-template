@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { getFirmBySlug } from "@/lib/csvFetcher";
-import { I18nProvider } from "@/lib/i18n";
 import LawFirmPage from "@/components/LawFirmPage";
 
 const CSV_URL = process.env.NEXT_PUBLIC_CSV_URL || "";
@@ -21,15 +20,13 @@ export default async function SlugPage({ params }: PageProps) {
   const firm = await getFirmBySlug(CSV_URL, params.slug);
 
   return (
-    <I18nProvider>
-      <LawFirmPage
-        dynamicFirm={{
-          name:    firm.name,
-          phone:   firm.phone,
-          address: firm.address,
-          email:   firm.email,
-        }}
-      />
-    </I18nProvider>
+    <LawFirmPage
+      dynamicFirm={{
+        name:    firm.name,
+        phone:   firm.phone,
+        address: firm.address,
+        email:   firm.email,
+      }}
+    />
   );
 }
